@@ -30,7 +30,6 @@
     * [属性](#html-property)
     * [注释](#html-comments)
 * [CSS](#css)
-    * [分离](#分离)
     * [空格](#css-space)
     * [引号](#css-quotes)
     * [小数](#小数)
@@ -38,7 +37,6 @@
     * [注释](#css-comments)
 * [页面相关](#页面相关)
     * [整体结构](#整体结构) 
-    * [loading](#loading)
     * [图片](#图片)
     * [分享](#分享)
 
@@ -180,7 +178,7 @@
 
 * 多行注释使用 `/** ... */`，并尽可能遵循 [jsdoc](http://www.css88.com/doc/jsdoc/) 注释规范。
 
-    > 遵循 jsdoc 规范的注释，能够很方便的自动生成 api 文档；同时，也能提升编码体验，以 Visual Studio Code 为例，当你调用函数时，会浮动提示该函数的描述、参数类型、返回值等信息。
+    > 遵循 jsdoc 规范的注释，能够很方便的自动生成 api 文档；同时，也能提升编码体验，以 webstorm 为例，当你调用函数时，会浮动提示该函数的描述、参数类型、返回值等信息。
 
     ```js
     // 不好
@@ -227,8 +225,6 @@
     ```
 
 * 在注释内容之前加上 `TODO: ` 可以提醒自己或其他开发人员这里需要一些额外工作。
-
-    > 在 Visual Studio Code 中，可以安装 [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight) 扩展，支持高亮显示 `FIXME:`、`TODO:` 等特殊注释，并自动生成列表展示。
 
     ```js
     class Calculator extends Abacus {
@@ -282,8 +278,6 @@
 ### 空格
 
 * 使用 4 个空格作为缩进。
-
-    > 主流的编辑器一般都支持设定 Tab 对应的空格数，以 Visual Studio Code 为例，设置方式：点击文件 -> 首选项 -> 设置，搜索 "editor.tabSize"。
 
     ```html
     <!--不好-->
@@ -339,15 +333,15 @@
 
 ### 标签
 
-* 不要在自闭合标签的结尾使用 `/` 。
+* 在自闭合标签的结尾使用 `/` 。
 
     ```html
     <!--不好-->
-    <img src="logo.png" alt="company"/>
+    <img src="logo.png" alt="company">
     <br/>
 
     <!--好-->
-    <img src="logo.png" alt="company">
+    <img src="logo.png" alt="company"/>
     <br>
     ```
 
@@ -447,40 +441,10 @@
 ## CSS
 
 <a id="css-space" name="css-space"></a>
-### 分离
-
-* 对于较简单的规则，尽量分离成通用样式，面向属性，而非面向业务。
-
-    > 面向业务的css设计，将导致大量的样式重复定义，难以维护；而面向属性的设计能大大提高重用性，也有利于统一维护修改。
-
-    ```css
-    /* 不好 */
-    /* 用户登录按钮 */
-    .btn-user-login {
-        background-color: #d30779;
-        text-align: center;
-        padding-bottom: 10px;
-    }
-
-    /* 好 */
-    .background-highlight {
-        background-color: #d30779;
-    }
-
-    .text-center {
-        text-align: center;
-    }
-
-    .p-b-10 {
-        padding-bottom: 10px;
-    }
-    ```
 
 ### 空格
 
 * 使用 4 个空格作为缩进。
-
-    > 主流的编辑器一般都支持设定 Tab 对应的空格数，以 Visual Studio Code 为例，设置方式：点击文件 -> 首选项 -> 设置，搜索 "editor.tabSize"。
 
     ```css
     /* 不好 */
@@ -732,18 +696,11 @@
 * 对于较生僻的样式、解决特定问题的样式、需要特别注明的样式等，尽可能加上注释，以便于后期维护。
 
     ```css
-    button {
-        /* 移除iOS下的原生样式 */
-        -webkit-appearance: none;
-    }
-
     .modal {
         /* 蒙版的层级必须大于700，以放在列表之上；同时必须小于900，以放在导航之下 */
         z-index: 701;
     }
     ```
-
-* 总是使用 `/* ... */` 创建标准注释，即便是在 sass 中也不要使用 `//` 。
 
 
 ## 页面相关
@@ -774,20 +731,8 @@
 * CSS：css 在 head 部分引用，业务 css 前需引用全局 css (v6/header_new.css)，不要合并请求； 
 * JS ：js 在 body 闭合标签前引用，插件、业务 js 前需引用全局 js (jquery-1.7.2.min.js)，不要合并请求； 
 
-### loading
-> 使用方法：调用接口时，传 ` loadingType: '' ` 参数，即可自定义使用不同加载效果（需引用 public.min.js）。
-* 主接口请求中： 
-页面主接口请求开始到返回前，显示小驴转转转加载动画；  
-页面部分模块数据请求中，对应位置显示 "三个红点" 加载动画；  
-
-* tab 切换接口请求中：  
-当点击 tab 后，对应列表数据未返回时，应设置一定的高度，防止页面上滑，并显示 "三个红点" 加载动画，使用方法同上。
-
 ### 图片
 
-* 图片样式自适应
-    * img：`width` 百分比，`height` 自适应；
-    * div：`background` + `padding-bottom` 。
 
 * 有超过一屏的图片展示，需使用 lazyload 插件，实现懒加载；
 
