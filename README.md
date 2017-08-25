@@ -238,6 +238,48 @@
     ```
 
 
+### 变量
+
+* 不要定义未使用的变量
+    
+    ```js
+    function myFunction () {
+        // 不好
+        var result = something()
+    }
+    ```
+    
+###全等
+
+* 始终使用 === 替代 ==。
+    > 例外： obj == null 可以用来检查 null || undefined。
+    ```js
+    // 好
+    if (name === 'John') {}
+    // 不好 
+    if (name == 'John') {}
+    
+    //好
+    if (name !== 'John') {}
+    //不好
+    if (name != 'John') {}
+    ```
+    
+###声明
+* 每个 var 关键字单独声明一个变量。
+    ```js
+    // 好
+    var silent = true
+    var verbose = true
+     
+    // 不好
+    var silent = true, verbose = true
+     
+    // 不好
+    var silent = true,
+        verbose = true
+    ```
+
 
 ## HTML
 
